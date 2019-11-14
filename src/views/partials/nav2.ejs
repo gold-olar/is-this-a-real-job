@@ -215,6 +215,12 @@
         animation: fadein 0.5s, fadeout 0.5s 3s;
     }
 
+    .verify-info {
+      background: #eba2a2;
+      padding: 3px;
+      text-align: center;
+    }
+
     /* Animations to fade the snackbar in and out */
 
     @-webkit-keyframes fadein {
@@ -318,10 +324,13 @@
             <!-- USERNAME & LOG OUT GOES HERE  -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 0;">
                     <span class="user-name-initials">
+                      <img src="<%=profileImage || 'https://res.cloudinary.com/gabicle/image/upload/v1573322778/avatar-undefined_hmsag5.png' %>"  style=" width: 32px; height: 32px; border-radius: 30px;">  
+                  </span>
+                    <!-- <span class="user-name-initials">
                         <%=name.substr(0, 2).toUpperCase()%>
-                    </span>
+                    </span>  -->
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/users/<%=username%>">Profile</a>
@@ -371,7 +380,12 @@
         Simple Notification
     </div>
     <div id="snackbar">Sample Notification</div>
+    <% if (!isVerified && isAuth) { %>
+    <div class="verify-info">Your account is not verified, check your email for verification link or  <a
+        href="/resendVerification">resend</a></div>
+    <% } %>
     <script>
+    
         //Clicking notification icon will toggle display
         function notificationToggle() {
             document.getElementById("branded").classList.toggle("show");
@@ -415,5 +429,9 @@
         }
         for (var i = 0; i < links.length; i++) {
             links[i].addEventListener('click', changeColor);
+        }
+
+        function imageFallback(){
+          alert("not loaded");
         }
     </script>

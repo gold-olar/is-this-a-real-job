@@ -114,15 +114,40 @@ export const fetchAllInvitesWithLimit = async (limit) => {
 };
 
 /**
+ * Fetch invites with limit
+ */
+export const fetchUserInvites = async (queryOption = {}) => {
+  try {
+    const invites = await Invite.findAll({
+      where: queryOption,
+      include: [
+        { model: User, as: 'user' },
+        { model: Comment, as: 'comments' },
+        { model: Vote, as: 'votes' }
+      ],
+      order: [['createdAt', 'DESC']],
+      logging: false,
+    });
+
+    return invites.map(invite => {
+      invite = invite.dataValues;
+      invite.user = invite.user ? invite.user.dataValues : {};
+      invite.votes = invite.votes.map((vote) => vote.dataValues);
+      return invite;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/**
  * @param {object} inviteData Data to be stored for the new job invite.
  * @returns {object} an object containing the newly created invite data.
  */
 export const saveInvite = async inviteData => {
   const e = new Error();
   const userObj = await User.findOne({
-    where: {
-      userId: inviteData.userId
-    },
+    where: { userId: inviteData.userId },
     logging: false
   }).catch(err => {
     console.log(err);
@@ -265,9 +290,13 @@ const voteInvite = async (res, userId, inviteId, type) => {
   }
 };
 
-export const upvoteOneInvite = (res, userId, inviteId) => voteInvite(res, userId, inviteId, 'up');
+export const upvoteOneInvite = (res, userId, inviteId) => voteInvite(
+  res, userId, inviteId, 'up'
+);
 
-export const downVoteOneInvite = async (res, userId, inviteId) => voteInvite(res, userId, inviteId, 'down');
+export const downVoteOneInvite = async (res, userId, inviteId) => voteInvite(
+  res, userId, inviteId, 'down'
+);
 
 export const unvoteOneInvite = async (userId, inviteId) => {
   try {
@@ -300,11 +329,9 @@ export const searchInvites = async string => {
       where: Sequelize.literal('MATCH (body, title, company, location) AGAINST(:string)'),
       include: [
         { model: User, as: 'user' },
-        // { model: Comment, as: "comments" }
+        { model: Vote, as: 'votes' },
       ],
-      replacements: {
-        string
-      },
+      replacements: { string },
       order: [['createdAt']],
       logging: false
     });

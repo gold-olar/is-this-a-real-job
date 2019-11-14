@@ -2,7 +2,7 @@
 <!-- close main content container opened inside the nav.ejs or nav2.ejs -->
 <style>
   /* Footer */
-  
+
   .footer {
     background-color: #24659e;
     color: #fff;
@@ -14,109 +14,127 @@
     margin-right: 0;
     margin-bottom: 0px;
   }
-  
+
   .subscribe {
     border-color: transparent !important;
     height: 100%;
     font-size: 70%;
   }
-  
+
   .footer-heading {
     margin-bottom: 1%;
     margin-top: 5%;
   }
-  
+
   .footer_email {
     color: #fff;
     font-weight: 600;
     line-height: 18px;
     font-size: 15px;
   }
-  
+
   .footer_email:hover {
     color: #aaa;
     text-decoration: none;
   }
-  
+
   .submit-div {
     margin-left: 0%;
   }
-  
+
   .submit-div {
     font-size: 85%;
   }
-  
+
   .footer_social {
     color: #fff;
     margin-left: 5%;
   }
-  
+
   .footer_social:hover {
     color: #aaa;
   }
-  
+
   .first-social {
     margin-left: 0%;
   }
-  
+
   .links {
     margin-right: 4%
   }
-  
+
   .fix-align {
     text-align: center;
   }
-  
-  @media screen and (max-width: 991px) {
-      .footer_email {
-          font-size: 10px;
-          line-height: 12px;
-      }
-      .mobile-margin {
-        margin-left: 4%;
-      }
 
-      .footer-heading {
-        font-size: 15px
-      }
+  @media screen and (max-width: 991px) {
+    .footer_email {
+      font-size: 10px;
+      line-height: 12px;
     }
 
-    @media screen and (max-width: 767px) {
-      .footer_email {
-          font-size: 13px;
-          line-height: 10px;
-      }
-      .mobile-margin {
-        margin-left: 3%;
-      }
-      .footer-heading {
-        font-size: 10px
-      }
+    .mobile-margin {
+      margin-left: 4%;
+    }
+
+    .footer-heading {
+      font-size: 15px
+    }
+    .privacy-align {
+      margin-top: 3%;
+    }
   }
-  
+
+  @media screen and (max-width: 767px) {
+    .footer_email {
+      font-size: 13px;
+      line-height: 10px;
+    }
+
+    .mobile-margin {
+      margin-left: 3%;
+    }
+
+    .footer-heading {
+      font-size: 10px
+    }
+    .privacy-align {
+      margin-top: 3%;
+    }
+  }
+
   @media screen and (max-width: 479px) {
     .footer_email {
       font-size: 10px;
       line-height: 8px;
     }
+
     .mobile-margin {
       margin-left: 2%;
       margin-top: 4%;
     }
+
     .footer-heading {
       font-size: 10px
     }
+    .privacy-align {
+      margin-top: 3%;
+    }
   }
+
 </style>
 
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col col-md-6 col-sm-6 text-center">
+      <div class="col col-md-4 col-sm-4 text-center">
         <p class="footer-heading"><a class="footer_email" href="/howitworks">How it works</a></p>
         <p><a class="footer_email" href="/about">About Us</a></p>
       </div>
-      <div class="col col-md-6 col-sm-6 text-center">
+      <div class="col col-md-4 col-sm-4 text-center privacy-align">
+        <p class="footer-heading"><a class="footer_email" href="/terms">Privacy Policy</a></p>
+      </div>
+      <div class="col col-md-4 col-sm-4 text-center">
         <h6 class="footer-heading">Contact Us</h6>
         <p>
           <a href="mailto:info@isthisarealjob.ng" class="footer_email" target="_blank">
@@ -137,6 +155,7 @@
 <!-- signin has the notification component and preloader, let it maintain it's position here -->
 <script type="text/javascript" src="/login.js"></script>
 <script type="text/javascript" src="/signup.js"></script>
+<script type="text/javascript" src="/deleteComment.js"></script>
 <script type="text/javascript" src="/comment.js"></script>
 <script type="text/javascript" src="/updatePost.js"></script>
 <script type="text/javascript" src="/invite.js"></script>
@@ -145,6 +164,7 @@
 <script type="text/javascript" src="/blockUser.js"></script>
 <script type="text/javascript" src="/deleteInvite.js"></script>
 <script type="text/javascript" src="/notification.js"></script>
+<script type="text/javascript" src="/reportUser.js"></script>
 <script type="text/javascript" src="/metrics.js"></script>
 <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 <script type="text/javascript" src="/analysis.js"></script>
